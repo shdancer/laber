@@ -1,10 +1,5 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png"></image>
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-  </view>
+  <van-button type="primary">测试</van-button>
 </template>
 
 <script>
@@ -14,7 +9,7 @@ export default {
       title: 'Hello',
     }
   },
-  onLoad() {},
+  onLoad() { },
   methods: {},
 }
 </script>
