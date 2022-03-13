@@ -7,7 +7,22 @@
       @touchstart="detectStart"
       :style="{ 'height': cardHeight }"
     >
-      <van-button @click="nav">暂时跳转</van-button>
+      <swiper :style="{ 'width': '100%', 'height': '100%' }">
+        <swiper-item>
+          <view class="login-part">
+            <view class="header">实 验 室</view>
+            <view class="form">
+              <vant-cell-group class="group">
+                <input type="text" placeholder="学号" :style="{ 'width': '100%' }" />
+                <!-- <vant-field placeholder="请输入学号" :border="true" /> -->
+              </vant-cell-group>
+            </view>
+          </view>
+        </swiper-item>
+        <swiper-item>
+          <view>注册</view>
+        </swiper-item>
+      </swiper>
     </view>
   </view>
 </template>
@@ -32,7 +47,7 @@ async function nav() {
 
 </script>
 
-<style>
+<style scoped lang="scss">
 .main {
   overflow: hidden;
   position: relative;
@@ -53,5 +68,43 @@ image {
   bottom: 0;
   transition: height 0.5s ease-out;
   display: flex;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.login-part {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100%;
+
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #5389c2;
+    font-size: 60rpx;
+    font-weight: lighter;
+    font-family: "微软雅黑";
+    word-spacing: 20rpx;
+  }
+
+  .form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+
+    .group {
+      width: 80%;
+      height: 100%;
+      position: relative;
+
+      .fxxk {
+        width: 100%;
+        height: 30rpx;
+      }
+    }
+  }
 }
 </style>
