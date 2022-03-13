@@ -8,13 +8,17 @@ async function exportReagent(
     operator,
     quantity
 ) {
-    return request(`${appInfo.baseurl}/api/reagent`, {
-        id,
-        date,
-        name,
-        operator,
-        quantity
-    }, "POST");
+    return uni.request({
+        url: `${appInfo.baseurl}/api/reagent`,
+        data: {
+            id,
+            date,
+            name,
+            operator,
+            quantity
+        },
+        method: "POST"
+    })
 }
 //入库
 async function importReagent(
@@ -24,18 +28,25 @@ async function importReagent(
     operator,
     quantity
 ) {
-    return request(`${appInfo.baseurl}/api/record/import`, {
-        id,
-        date,
-        name,
-        operator,
-        quantity
-    }, "POST")
+    return uni.request({
+        url: `${appInfo.baseurl}/api/record/import`,
+        data: {
+            id,
+            date,
+            name,
+            operator,
+            quantity
+        },
+        method: "POST"
+    })
 }
 
 //试剂名查询
 async function selectByName(name) {
-    return request(`${appInfo.baseurl}/api/record`, { name }, "GET")
+    return uni.request({
+        url: `${appInfo.baseurl}/api/record`,
+        method: "GET"
+    })
 }
 //综合查询
 async function selectAll(
@@ -45,31 +56,43 @@ async function selectAll(
     page, [startTime, endTime],
     user
 ) {
-    return request(`${appInfo.baseurl}/api/record/`, {
-        type,
-        name,
-        limit,
-        page,
-        startTime,
-        endTime,
-        user
-    }, "GET")
+    return uni.request({
+        url: `${appInfo.baseurl}/api/record/`,
+        data: {
+            type,
+            name,
+            limit,
+            page,
+            startTime,
+            endTime,
+            user
+        },
+        method: "GET"
+    })
 }
 //获取审批操作
 async function getApproval(
     limit, page
 ) {
-    return request(`${appInfo.baseurl}/api/record/operation`, { limit, page }, "PUT")
+    return uni.request({
+        url: `${appInfo.baseurl}/api/record/operation`,
+        data: { limit, page },
+        method: "PUT"
+    })
 }
 //同意操作审批
 async function giveApproval(
     id,
     agree
 ) {
-    return request(`${appInfo.baseurl}/api/record/operation`, {
-        id,
-        agree
-    }, "PUT")
+    return uni.request({
+        url: `${appInfo.baseurl}/api/record/operation`,
+        data: {
+            id,
+            agree
+        },
+        method: "PUT"
+    })
 }
 
 export default {
