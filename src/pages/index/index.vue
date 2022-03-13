@@ -1,17 +1,22 @@
 <template>
-  <van-button type="primary">测试</van-button>
+  <view>
+    <van-button type="primary" @click="click">测试</van-button>
+    {{ counter }}
+  </view>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      title: 'Hello',
-    }
-  },
-  onLoad() { },
-  methods: {},
+<script setup>
+import { ref } from "vue";
+import { onLoad } from "@dcloudio/uni-app";
+const counter = ref(0);
+
+onLoad(() => {
+  counter.value++;
+})
+function click() {
+  counter.value++;
 }
+
 </script>
 
 <style>
