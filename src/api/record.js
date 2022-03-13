@@ -38,7 +38,7 @@ async function selectByName(name) {
     return request(`${appInfo.baseurl}/api/record`, { name }, "GET")
 }
 //综合查询
-async function select(
+async function selectAll(
     type,
     name,
     limit,
@@ -70,4 +70,13 @@ async function giveApproval(
         id,
         agree
     }, "PUT")
+}
+
+export default {
+    exportReagent,
+    importReagent,
+    selectByName,
+    selectAll,
+    getApproval,
+    giveApproval
 }

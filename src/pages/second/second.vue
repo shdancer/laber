@@ -8,6 +8,7 @@
       background="#d3dfe8"
       :change="onChanges"
       :search="onSearch"
+      class
     >
       <view slot="action" @click="search">搜索</view>
     </van-search>
