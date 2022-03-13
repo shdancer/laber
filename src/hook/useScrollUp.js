@@ -12,8 +12,11 @@ export function useScrollUp() {
   }
 
   watch(moveValue, () => {
-    if (startValue.value - moveValue.value >= 200) {
+    if (startValue.value - moveValue.value >= 100 && scrolledUp.value === false) {
       scrolledUp.value = true;
+    }
+    if (startValue.value - moveValue.value <= -100 && scrolledUp.value === true) {
+      scrolledUp.value = false;
     }
   });
 

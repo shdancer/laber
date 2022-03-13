@@ -1,30 +1,31 @@
 {
-    "pages": [{
-            "path": "pages/second/second",
-            "style": {
-                "navigationBarTitleText": "第二页"
-            }
-        },
-        {
-            "path": "pages/index/index",
-            "style": {
-                "navigationBarTitleText": "uni-app"
-            }
-        }
-    ],
-    "globalStyle": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#5389c2",
-        "backgroundColor": "#a4c3db",
-        "usingComponents": {
-            "van-button": "/wxcomponents/vant/button/index",
-            "van-image": "/wxcomponents/vant/image/index",
-            "van-tabbar": "/wxcomponents/vant/tabbar/index",
-            "van-tabbar-item": "/wxcomponents/vant/tabbar-item/index",
-            "van-search": "/wxcomponents/vant/search/index",
-            "van-cell": "/wxcomponents/vant/cell/index",
-            "van-cell-group": "/wxcomponents/vant/cell-group/index"
-        }
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "uni-app"
+      }
+    },
+    {
+      "path": "pages/second/second",
+      "style": {
+        "navigationBarTitleText": "第二页"
+      }
     }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#5389c2",
+    "backgroundColor": "#a4c3db",
+    "usingComponents": {
+      "van-button": "/wxcomponents/vant/button/index",
+      "van-image": "/wxcomponents/vant/image/index",
+      "van-tabbar": "/wxcomponents/vant/tabbar/index",
+      "van-tabbar-item": "/wxcomponents/vant/tabbar-item/index",
+      "van-search": "/wxcomponents/vant/search/index",
+      "van-cell": "/wxcomponents/vant/cell/index",
+      "van-cell-group": "/wxcomponents/vant/cell-group/index"
+    }
+  }
 }
