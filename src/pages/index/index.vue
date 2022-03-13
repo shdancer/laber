@@ -1,48 +1,45 @@
 <template>
-  <view>
-    <van-button type="primary" @click="click">测试</van-button>
-    {{ counter }}
+  <view class="main">
+    <image src="../../static/theme.jpeg" mode="widthFix" />
+    <view
+      class="login-card"
+      @touchmove="detectMove"
+      @touchstart="detectStart"
+      :style="{ 'height': cardHeight }"
+    ></view>
   </view>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
-const counter = ref(0);
+import { useScrollUp } from "../../hook/useScrollUp";
 
-onLoad(() => {
-  counter.value++;
+const { scrolledUp, detectMove, detectStart } = useScrollUp();
+
+const cardHeight = computed(() => {
+  return scrolledUp.value ? "70%" : "20%";
 })
-function click() {
-  counter.value++;
-}
 
 </script>
 
 <style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.main {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
 }
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
+image {
+  width: 100%;
+  z-index: -2;
+  position: absolute;
 }
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+.login-card {
+  background-color: rgba(229, 239, 245, 0.783);
+  border-radius: 50rpx;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transition: height 0.5s ease-out;
 }
 </style>
