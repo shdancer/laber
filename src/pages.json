@@ -2,7 +2,7 @@
     "pages": [{
             "path": "pages/second/second",
             "style": {
-                "navigationBarTitleText": "第二页"
+                "navigationBarTitleText": "搜索"
             }
         },
         {

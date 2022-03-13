@@ -8,15 +8,15 @@
       background="#d3dfe8"
       :change="onChanges"
       :search="onSearch"
-      class
+      class="van-search"
     >
       <view slot="action" @click="search">搜索</view>
     </van-search>
-    <van-cell-group>
+    <van-cell-group inset>
       <van-cell title="单元格" value="内容" v-for="(item, index) in list" @key="index" />
       <van-cell title="单元格" value="内容" label="描述信息" border="{{ false }}" />
     </van-cell-group>
-    <van-button type="primary" @click="tryy">warning</van-button>
+    <!-- <van-button type="primary" @click="tryy">warning</van-button> -->
   </view>
 </template>
 
@@ -78,4 +78,9 @@ function onSearch() {
 </script>
 
 <style>
+.van-search {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 </style>
