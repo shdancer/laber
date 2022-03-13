@@ -2,27 +2,27 @@ import { request } from "../utils/request";
 import { appInfo } from "../appInfo";
 
 async function login(stuid, password) {
-  return request(`${appInfo.baseurl}/api/user`, { stuid, password }, "POST");
+  return uni.request({ url: `${appInfo.baseurl}/api/user`, data: { stuid, password }, method: "POST" });
 }
 
 async function logout() {
-  return request(`${appInfo.baseurl}/api/user`, undefined, "DELETE");
+  return uni.request({ url: `${appInfo.baseurl}/api/user`, method: "DELETE" });
 }
 
 async function register(name, stuid, password) {
-  return request(`${appInfo.baseurl}/api/user/register`, { name, stuid, password }, "POST");
+  return uni.request({ url: `${appInfo.baseurl}/api/user/register`, data: { name, stuid, password }, method: "POST" });
 }
 
 async function approve(id, agree) {
-  return request(`${appInfo.baseurl}/api/user/approve`, { id, agree }, "PUT");
+  return uni.request({ url: `${appInfo.baseurl}/api/user/approve`, data: { id, agree }, method: "PUT" });
 }
 
 async function getApprove(limit, page) {
-  return request(`${appInfo.baseurl}/api/user/approve`, undefined, "GET");
+  return uni.request({ url: `${appInfo.baseurl}/api/user/approve`, method: "GET" });
 }
 
 async function cancel(id) {
-  return request(`${appInfo.baseurl}/api/user/cancel/${id}`, undefined, "DELETE");
+  return uni.request({ url: `${appInfo.baseurl}/api/user/cancel/${id}`, method: "DELETE" });
 }
 
 export default {

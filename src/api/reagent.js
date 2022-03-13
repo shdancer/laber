@@ -1,4 +1,3 @@
-import { request } from "../utils/request";
 import { appInfo } from "../appInfo";
 
 async function addReagent(
@@ -14,23 +13,30 @@ async function addReagent(
   operation,
   limitation
 ) {
-  return request(`${appInfo.baseurl}/api/reagent`, {
-    name,
-    brand,
-    date,
-    purity,
-    capacity,
-    location,
-    type,
-    control,
-    solution,
-    operation,
-    limitation
-  }, "POST");
+  return uni.request({
+    url: `${appInfo.baseurl}/api/reagent`,
+    data: {
+      name,
+      brand,
+      date,
+      purity,
+      capacity,
+      location,
+      type,
+      control,
+      solution,
+      operation,
+      limitation
+    },
+    method: "POST"
+  });
 }
 
 async function deleteReagent(id) {
-  return request(`${appInfo.baseurl}/api/reagent/${id}`, undefined, "DELETE");
+  return uni.request({
+    url: `${appInfo.baseurl}/api/reagent/${id}`,
+    method: "DELETE"
+  });
 }
 
 async function changeReagent(
@@ -47,28 +53,40 @@ async function changeReagent(
   operation,
   limitation
 ) {
-  return request(`${appInfo.baseurl}/api/reagent`, {
-    id,
-    name,
-    brand,
-    date,
-    purity,
-    capacity,
-    location,
-    type,
-    control,
-    solution,
-    operation,
-    limitation
-  }, "PUT");
+  return uni.request({
+    url: `${appInfo.baseurl}/api/reagent`,
+    data: {
+      id,
+      name,
+      brand,
+      date,
+      purity,
+      capacity,
+      location,
+      type,
+      control,
+      solution,
+      operation,
+      limitation
+    },
+    method: "PUT"
+  });
 }
 
 async function getReagent(name, limit, page) {
-  return request(`${appInfo.baseurl}/api/reagent`, { name, limit, page }, "GET");
+  return uni.request({
+    url: `${appInfo.baseurl}/api/reagent`,
+    data: { name, limit, page },
+    method: "GET"
+  });
 }
 
 async function limitation(limit, page) {
-  return request(`${appInfo.baseurl}/api/reagent/limitation`, { limit, page }, "GET");
+  return uni.request({
+    url: `${appInfo.baseurl}/api/reagent/limitation`,
+    data: { limit, page },
+    method: "GET"
+  });
 }
 
 export default {
