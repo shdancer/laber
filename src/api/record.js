@@ -8,8 +8,7 @@ async function exportReagent(
   operator,
   quantity
 ) {
-  return request({
-
+  return uni.request({
     url: `${appInfo.baseurl}/api/reagent`,
     data: {
       id,
@@ -29,8 +28,7 @@ async function importReagent(
   operator,
   quantity
 ) {
-  return request({
-
+  return uni.request({
     url: `${appInfo.baseurl}/api/record/import`,
     data: {
       id,
@@ -49,6 +47,7 @@ async function selectByName(name) {
     url: `${appInfo.baseurl}/api/record`, data: { name }, method: "GET"
   });
 }
+
 //综合查询
 async function select(
   type,
@@ -57,29 +56,65 @@ async function select(
   page, [startTime, endTime],
   user
 ) {
-  return request(`${appInfo.baseurl}/api/record/`, {
-    type,
-    name,
-    limit,
-    page,
-    startTime,
-    endTime,
-    user
-  }, "GET")
+  return uni.request({
+    url: `${appInfo.baseurl}/api/record`,
+    method: "GET"
+  })
+}
+//综合查询
+async function selectAll(
+  type,
+  name,
+  limit,
+  page,
+  startTime,
+  endTime,
+  user
+) {
+  return uni.request({
+    url: `${appInfo.baseurl}/api/record/`,
+    data: {
+      type,
+      name,
+      limit,
+      page,
+      startTime,
+      endTime,
+      user
+    },
+    method: "GET"
+  });
 }
 //获取审批操作
 async function getApproval(
   limit, page
 ) {
-  return request(`${appInfo.baseurl}/api/record/operation`, { limit, page }, "PUT")
+  return uni.request({
+    url: `${appInfo.baseurl}/api/record/operation`,
+    data: { limit, page },
+    method: "PUT"
+  });
 }
 //同意操作审批
 async function giveApproval(
   id,
   agree
 ) {
-  return request(`${appInfo.baseurl}/api/record/operation`, {
-    id,
-    agree
-  }, "PUT")
+  return uni.request({
+    url: `${appInfo.baseurl}/api/record/operation`,
+    data: {
+      id,
+      agree
+    },
+    method: "PUT"
+  });
+}
+
+export default {
+  exportReagent,
+  importReagent,
+  selectByName,
+  selectAll,
+  getApproval,
+  giveApproval
 }

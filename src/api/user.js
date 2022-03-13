@@ -1,4 +1,3 @@
-import { request } from "../utils/request";
 import { appInfo } from "../appInfo";
 
 async function login(stuid, password) {
