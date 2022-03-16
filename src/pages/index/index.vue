@@ -11,40 +11,158 @@
         <swiper-item>
           <view class="login-part">
             <view class="header">实 验 室</view>
-            <view class="form">
-              <vant-cell-group class="group">
-                <input type="text" placeholder="学号" :style="{ 'width': '100%' }" />
-                <!-- <vant-field placeholder="请输入学号" :border="true" /> -->
-              </vant-cell-group>
-            </view>
+            <van-cell-group inset :style="{ 'opacity': opacity, 'width': '100%' }" class="form">
+              <!-- <input type="text" placeholder="学号" :style="{ 'width': '100%' }" /> -->
+              <van-field
+                label="学号"
+                required
+                clearable
+                :border="true"
+                @change="form.stuid = $event.detail"
+              />
+              <van-field
+                name="password"
+                label="密码"
+                required
+                clearable
+                :border="true"
+                password
+                @change="form.password = $event.detail"
+              />
+            </van-cell-group>
+            <van-button
+              type="info"
+              round
+              size="large"
+              block
+              :style="{
+                'width': '80%',
+                'opacity': opacity,
+                'margin-bottom': '40rpx'
+              }"
+              @click="login"
+            >登录</van-button>
+            <view :style="{ 'color': 'red' }">左滑注册</view>
           </view>
         </swiper-item>
+
         <swiper-item>
-          <view>注册</view>
+          <view class="login-part">
+            <view class="header">注 册</view>
+            <van-cell-group inset :style="{ 'opacity': opacity, 'width': '100%' }" class="form">
+              <van-field
+                label="姓名"
+                required
+                clearable
+                :border="true"
+                @change="form.name = $event.detail"
+              />
+              <van-field
+                label="学号"
+                required
+                clearable
+                :border="true"
+                @change="form.stuid = $event.detail"
+              />
+              <van-field
+                name="password"
+                label="密码"
+                required
+                clearable
+                :border="true"
+                password
+                @change="form.password = $event.detail"
+              />
+              <van-field
+                name="password"
+                label="密码"
+                placeholder="请再次输入密码"
+                required
+                clearable
+                :border="true"
+                password
+                @change="form.passwordAgain = $event.detail"
+              />
+            </van-cell-group>
+            <van-button
+              type="info"
+              round
+              size="large"
+              block
+              :style="{
+                'width': '80%',
+                'opacity': opacity,
+                'margin-bottom': '40rpx'
+              }"
+              @click="register"
+            >注册</van-button>
+          </view>
         </swiper-item>
       </swiper>
     </view>
+    <van-toast id="van-toast" />
   </view>
 </template>
 
 <script setup>
-import { computed, reactive, ref, watch } from "vue";
+import Toast from '../../wxcomponents/vant/toast/toast';
+import { computed, reactive } from "vue";
+import user from "../../api/user";
 import { useScrollUp } from "../../hook/useScrollUp";
-import { navigateTo } from "../../utils/navigateTo";
 
 const { scrolledUp, detectMove, detectStart } = useScrollUp();
 
+const form = reactive({
+  stuid: "",
+  password: "",
+  passwordAgain: "",
+  name: ""
+});
+
 const cardHeight = computed(() => {
-  return scrolledUp.value ? "80%" : "20%";
+  return scrolledUp.value ? "50%" : "20%";
 });
 const brightness = computed(() => {
   return `brightness(${scrolledUp.value ? '0.3' : '1'})`;
 });
+const opacity = computed(() => {
+  return scrolledUp.value ? "1" : "0";
+});
 
-async function nav() {
-  await navigateTo("/pages/second/second");
+async function login() {
+  try {
+    const result = await user.login(form.stuid, form.password);
+    if (result.statusCode !== 200) {
+      throw `服务器或网络错误`;
+    }
+    if (!result.data.success) {
+      throw `${result.data.error}`;
+    }
+    await uni.navigateTo({
+      url: "/pages/second/second"
+    });
+  } catch (e) {
+    console.log(e);
+    Toast.fail(`错误： ${e}`);
+  }
 }
 
+async function register() {
+  try {
+    const result = await user.register(form.name, form.stuid, form.password);
+    if (result.statusCode !== 200) {
+      throw `服务器或网络错误`;
+    }
+    if (!result.data.success) {
+      throw `${result.data.error}`;
+    }
+    uni.navigateTo({
+      url: "/pages/second/second"
+    });
+  } catch (e) {
+    Toast.fail(`错误： ${e}`)
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -75,6 +193,7 @@ image {
   display: flex;
   position: relative;
   flex-direction: column;
+  align-items: center;
   height: 100%;
 
   .header {
@@ -86,25 +205,13 @@ image {
     font-weight: lighter;
     font-family: "微软雅黑";
     word-spacing: 20rpx;
+    margin-bottom: 40rpx;
+    margin-top: 30rpx;
   }
 
   .form {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-
-    .group {
-      width: 80%;
-      height: 100%;
-      position: relative;
-
-      .fxxk {
-        width: 100%;
-        height: 30rpx;
-      }
-    }
+    transition: opacity 0.5s ease-in-out;
+    margin-bottom: 40rpx;
   }
 }
 </style>

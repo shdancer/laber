@@ -49,19 +49,6 @@ async function selectByName(name) {
 }
 
 //综合查询
-async function select(
-  type,
-  name,
-  limit,
-  page, [startTime, endTime],
-  user
-) {
-  return uni.request({
-    url: `${appInfo.baseurl}/api/record`,
-    method: "GET"
-  })
-}
-//综合查询
 async function selectAll(
   type,
   name,
@@ -72,7 +59,7 @@ async function selectAll(
   user
 ) {
   return uni.request({
-    url: `${appInfo.baseurl}/api/record/`,
+    url: `${appInfo.baseurl}/api/record`,
     data: {
       type,
       name,
