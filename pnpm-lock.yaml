@@ -23,6 +23,7 @@ specifiers:
   vue: ^3.2.26
   vue-i18n: ^9.1.9
   vuex: ^4.0.2
+  weapp-cookie: ^1.4.8
 
 dependencies:
   '@dcloudio/uni-app': 3.0.0-alpha-3040220220310003_vue@3.2.31
@@ -41,6 +42,7 @@ dependencies:
   vue: 3.2.31
   vue-i18n: 9.1.9_vue@3.2.31
   vuex: 4.0.2_vue@3.2.31
+  weapp-cookie: 1.4.8
 
 devDependencies:
   '@dcloudio/types': 2.5.18
@@ -4043,6 +4045,10 @@ packages:
       send: 0.17.2
     dev: true
 
+  /set-cookie-parser/2.4.8:
+    resolution: {integrity: sha512-edRH8mBKEWNVIVMKejNnuJxleqYE/ZSdcT8/Nem9/mmosx12pctd80s2Oy00KNZzrogMZS5mauK2/ymL1bvlvg==}
+    dev: false
+
   /setprototypeof/1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
     dev: true
@@ -4373,6 +4379,12 @@ packages:
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.9
+    dev: false
+
+  /weapp-cookie/1.4.8:
+    resolution: {integrity: sha512-YksOnCI4mM+MAlAf/5iL0aSzwfePHZTUS9NorL0RerAxJMOpzzrEZrMBF+wKS1usH/UQqkZTMSxjiWs0ZcAE9g==}
+    dependencies:
+      set-cookie-parser: 2.4.8
     dev: false
 
   /webpack-sources/3.2.3:

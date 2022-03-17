@@ -19,6 +19,7 @@
                 clearable
                 :border="true"
                 @change="form.stuid = $event.detail"
+                icon="user-o"
               />
               <van-field
                 name="password"
@@ -28,6 +29,7 @@
                 :border="true"
                 password
                 @change="form.password = $event.detail"
+                icon="closed-eye"
               />
             </van-cell-group>
             <van-button
@@ -38,7 +40,8 @@
               :style="{
                 'width': '80%',
                 'opacity': opacity,
-                'margin-bottom': '40rpx'
+                'margin-bottom': '40rpx',
+                'transition': 'opacity 0.5s ease-in-out'
               }"
               @click="login"
             >登录</van-button>
@@ -92,7 +95,8 @@
               :style="{
                 'width': '80%',
                 'opacity': opacity,
-                'margin-bottom': '40rpx'
+                'margin-bottom': '40rpx',
+                'transition': 'opacity 0.5s ease-in-out'
               }"
               @click="register"
             >注册</van-button>
@@ -106,9 +110,10 @@
 
 <script setup>
 import Toast from '../../wxcomponents/vant/toast/toast';
-import { computed, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import user from "../../api/user";
 import { useScrollUp } from "../../hook/useScrollUp";
+import cookies from "weapp-cookie";
 
 const { scrolledUp, detectMove, detectStart } = useScrollUp();
 
@@ -129,6 +134,19 @@ const opacity = computed(() => {
   return scrolledUp.value ? "1" : "0";
 });
 
+onMounted(async () => {
+  try {
+    if (cookies.has("EGG_SESS")) {
+      await uni.reLaunch({
+        url: "/pages/main/main"
+      });
+    }
+  } catch (e) {
+    console.log(e);
+    Toast.fail(`错误： ${e}`);
+  };
+});
+
 async function login() {
   try {
     const result = await user.login(form.stuid, form.password);
@@ -138,7 +156,7 @@ async function login() {
     if (!result.data.success) {
       throw `${result.data.error}`;
     }
-    await uni.navigateTo({
+    await uni.reLaunch({
       url: "/pages/main/main"
     });
   } catch (e) {
@@ -156,10 +174,11 @@ async function register() {
     if (!result.data.success) {
       throw `${result.data.error}`;
     }
-    uni.navigateTo({
+    uni.reLaunch({
       url: "/pages/main/main"
     });
   } catch (e) {
+
     Toast.fail(`错误： ${e}`)
   }
 }
