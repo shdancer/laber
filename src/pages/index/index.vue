@@ -139,7 +139,7 @@ async function login() {
       throw `${result.data.error}`;
     }
     await uni.navigateTo({
-      url: "/pages/second/second"
+      url: "/pages/main/main"
     });
   } catch (e) {
     console.log(e);
@@ -157,7 +157,7 @@ async function register() {
       throw `${result.data.error}`;
     }
     uni.navigateTo({
-      url: "/pages/second/second"
+      url: "/pages/main/main"
     });
   } catch (e) {
     Toast.fail(`错误： ${e}`)

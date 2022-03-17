@@ -7,9 +7,9 @@
       }
     },
     {
-      "path": "pages/second/second",
+      "path": "pages/main/main",
       "style": {
-        "navigationBarTitleText": "搜索"
+        "navigationBarTitleText": "实验室小程序"
       }
     }
   ],
