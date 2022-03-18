@@ -110,7 +110,7 @@
 
 <script setup>
 import Toast from '../../wxcomponents/vant/toast/toast';
-import { computed, onMounted, reactive } from "vue";
+import { computed, onMounted, reactive, toRaw } from "vue";
 import user from "../../api/user";
 import { useScrollUp } from "../../hook/useScrollUp";
 import cookies from "weapp-cookie";
