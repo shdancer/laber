@@ -12,7 +12,6 @@
           <view class="login-part">
             <view class="header">实 验 室</view>
             <van-cell-group inset :style="{ 'opacity': opacity, 'width': '100%' }" class="form">
-              <!-- <input type="text" placeholder="学号" :style="{ 'width': '100%' }" /> -->
               <van-field
                 label="学号"
                 required
@@ -198,7 +197,7 @@ image {
 }
 .login-card {
   background-color: rgba(216, 216, 216, 0.845);
-  border-radius: 50rpx;
+  border-radius: 50rpx 50rpx 0 0;
   box-shadow: 0px -5px 30px #535d60;
   width: 100%;
   position: absolute;
